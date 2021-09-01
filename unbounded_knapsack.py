@@ -5,16 +5,16 @@ from typing import List
 """
 
 
-def knapsack(capacity: int, weights: List[int], values: List[int], counter: int) -> int:
+def unbounded_knapsack(capacity: int, weights: List[int], values: List[int], counter: int) -> int:
     """
-    Returns the maximum value that can be put in a knapsack of a capacity cap,
+    Returns the maximum value that can be put in a unbounded_knapsack of a capacity cap,
     whereby each weight w has a specific value val.
 
    >>> capacity = 100
     >>> value = [10, 30, 20]
     >>> weight = [5, 10, 15]
     >>> length= len(val)
-    >>> knapsack(capacity, weight, value, length)
+    >>> unbounded_knapsack(capacity, weight, value, length)
     300
 
     The result is 300 cause the values of 100 and 120 got the weight of 50
@@ -25,18 +25,18 @@ def knapsack(capacity: int, weights: List[int], values: List[int], counter: int)
     if counter == 0 or capacity == 0:
         return 0
 
-    # If weight of the nth item is more than Knapsack of capacity,
+    # If weight of the nth item is more than unbounded_knapsack of capacity,
     #   then this item cannot be included in the optimal solution,
     # else return the maximum of two cases:
     #   (1) nth item included
     #   (2) not included
     if weights[counter - 1] > capacity:
-        return knapsack(capacity, weights, values, counter - 1)
+        return unbounded_knapsack(capacity, weights, values, counter - 1)
     else:
         left_capacity = capacity - weights[counter - 1]
         new_value_included = values[counter - 1] + \
-            knapsack(left_capacity, weights, values, counter)
-        without_new_value = knapsack(capacity, weights, values, counter - 1)
+            unbounded_knapsack(left_capacity, weights, values, counter)
+        without_new_value = unbounded_knapsack(capacity, weights, values, counter - 1)
         return max(new_value_included, without_new_value)
 
 
