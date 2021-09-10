@@ -5,7 +5,7 @@ This file contains the test-suite for the unbounded_knapsack problem.
 """
 import unittest
 
-from unbounded_knapsack.unbounded_knapsack import unbounded_knapsack
+from unbounded_knapsack import unbounded_knapsack
 
 
 class Test(unittest.TestCase):
